@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import Analytics from "./pages/Dashboard/Analytics";
+import Projects from "./pages/Dashboard/Projects";
 import Calendar from "./pages/Calendar";
 
 const App = () => {
@@ -23,7 +23,7 @@ const App = () => {
     !loading && (
       <>
         <Routes>
-          <Route exact path="/" element={<Analytics />} />
+          <Route exact path="/" element={<Projects />} />
           <Route path="/calendar" element={<Calendar />} />
         </Routes>
       </>

@@ -178,7 +178,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                 (isActive && "!text-white")
                               }
                             >
-                              Analytics
+                              Open Projects
                             </NavLink>
                           </li>
                         </ul>
