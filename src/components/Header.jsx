@@ -89,6 +89,15 @@ const Header = (props) => {
           </form>
         </div>
 
+        {/* <div className="flex items-center gap-3 2xsm:gap-7">
+          <select onChange={(e) => { props.setLanguage(e.target.value) }} id="underline_select" className="block py-2.5 px-0 w-80 text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+            {languageOptions.map((language, index) => {
+              return <option key={index} value={language.value}>{language.label}</option>
+
+            })}
+          </select>
+        </div> */}
+
         <div className="flex items-center gap-3 2xsm:gap-7">
           <select onChange={(e) => { props.setLanguage(e.target.value) }} id="underline_select" className="block py-2.5 px-0 w-80 text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
             {languageOptions.map((language, index) => {
@@ -96,9 +105,6 @@ const Header = (props) => {
 
             })}
           </select>
-        </div>
-
-        <div className="flex items-center gap-3 2xsm:gap-7">
           <ul className="flex items-center gap-2 2xsm:gap-4">
             {/* <!-- Dark Mode Toggler --> */}
             <DarkModeSwitcher />
