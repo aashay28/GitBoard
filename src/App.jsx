@@ -1,16 +1,17 @@
-import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
-import Projects from "./pages/Dashboard/Projects";
-import Calendar from "./pages/Calendar";
+import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Projects from './pages/Dashboard/Projects';
+import Calendar from './pages/Calendar';
+import Profile from './pages/Profile';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
 
-  const preloader = document.getElementById("preloader");
+  const preloader = document.getElementById('preloader');
 
   if (preloader) {
     setTimeout(() => {
-      preloader.style.display = "none";
+      preloader.style.display = 'none';
       setLoading(false);
     }, 2000);
   }
@@ -23,8 +24,9 @@ const App = () => {
     !loading && (
       <>
         <Routes>
-          <Route exact path="/" element={<Projects />} />
-          <Route path="/calendar" element={<Calendar />} />
+          <Route exact path='/' element={<Projects />} />
+          <Route path='/calendar' element={<Calendar />} />
+          <Route path='/profile/:user' element={<Profile />} />
         </Routes>
       </>
     )

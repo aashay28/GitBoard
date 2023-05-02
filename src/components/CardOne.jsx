@@ -1,9 +1,16 @@
 import moment from 'moment';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const CardOne = ({ repository }) => {
+  const navigate = useNavigate();
+  const handleProfile = (user) => {
+    navigate(`/profile/${user}`);
+  };
   return (
     <div className='rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark'>
-      <div className='flex  items-center justify-start'>
+      <div
+        className='flex  items-center justify-start'
+        onClick={() => handleProfile(repository.owner.login)}
+      >
         <img
           className='rounded-full h-11.5 w-11.5'
           src={repository.owner.avatar_url}
