@@ -4,64 +4,57 @@ import Spinner from "../../helpers/Spinner";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { languageOptions, sortDirection } from "../../helpers/Constant";
+import DropdownSelect from "../../components/DropdownSelect";
 const Projects = () => {
   const [repositories, setRepositories] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
   const [filterLoading, setFilterLoading] = useState(false)
-
-  const initialState = {
-    language: 'python',
-    direction: 'desc',
-    sortBy: "",
-  }
-  const [filterData, setFilterData] = useState({ ...initialState });
+  const [language, setLanguage] = useState('python')
+  const [direction, setDirection] = useState('desc')
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     axios
       .get(
-        `https://api.github.com/search/repositories?q=language:${filterData?.language}+stars:>=100&sort=stars&order=${filterData?.direction}`
+        `https://api.github.com/search/repositories?q=language:${language}+stars:>=100&sort=stars&order=${direction}`
       )
       .then((response) => {
         setRepositories(response.data.items);
-        setIsLoading(false)
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
         setIsLoading(false)
       });
-  }, [filterData]);
+  }, [language, direction]);
 
   return (
     <DefaultLayout >
       <div className="flex gap-8 mb-4 rounded-sm border border-stroke bg-white py-5 px-5 justify-end">
         {!filterLoading && <>
           <div>
-            <select onChange={(e) => { setFilterData({ ...filterData, direction: e.target.value }) }} className="block py-2.5 px-0 w-50 text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-              {sortDirection.map((language, index) => {
-                return <option key={index} value={language.value}>{language.label}</option>
-
-              })}
-            </select>
+            <DropdownSelect
+              setData={setDirection}
+              data={direction}
+              options={sortDirection}
+              label={"Direction"}
+            />
           </div>
           <div>
-            <select onChange={(e) => { setFilterData({ ...filterData, language: e.target.value }) }} className="block py-2.5 px-0 w-50 text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-              {languageOptions.map((language, index) => {
-                return <option key={index} value={language.value}>{language.label}</option>
-
-              })}
-            </select>
+            <DropdownSelect
+              setData={setLanguage}
+              data={language}
+              options={languageOptions}
+              label={"Language"}
+            />
           </div>
           <div>
             <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={() => {
                 setFilterLoading(true)
                 setTimeout(() => {
-                  setFilterData({
-                    language: 'python',
-                    direction: 'desc',
-                    sortBy: "",
-                  })
+                  setLanguage('python')
+                  setDirection('desc')
                   setFilterLoading(false)
                 }, 10)
               }}

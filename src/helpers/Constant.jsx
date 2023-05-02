@@ -3,7 +3,7 @@ export const languageOptions = [
     { value: 'javascript', label: 'Javascript' },
     { value: 'react', label: 'React' },
     { value: 'node', label: 'Node' },
-    { value: 'java', label: 'JAVA' }]
+    { value: 'java', label: 'Java' }]
 
 export const sortDirection = [
     { value: 'desc', label: 'Descending' },
