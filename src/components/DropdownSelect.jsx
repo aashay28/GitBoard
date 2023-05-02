@@ -39,16 +39,19 @@ const DropdownSelect = ({ setData, data, options, label }) => {
         onClick={() => setDropdownOpen(!dropdownOpen)}
         className='flex items-center gap-4'
       >
-        <span className='hidden text-right lg:block'>
+        <span className='text-right lg:block'>
           <span className='block text-sm font-medium text-black dark:text-white'>
-            {options?.map((option) => option?.value?.includes(data) && option?.label)}
+            {options?.map(
+              (option) => option?.value?.includes(data) && option?.label
+            )}
           </span>
           <span className='block text-xs'>{label}</span>
         </span>
 
         <svg
-          className={`fill-current sm:block ${dropdownOpen ? 'rotate-180' : ''
-            }`}
+          className={`fill-current sm:block ${
+            dropdownOpen ? 'rotate-180' : ''
+          }`}
           width='12'
           height='8'
           viewBox='0 0 12 8'
@@ -69,8 +72,9 @@ const DropdownSelect = ({ setData, data, options, label }) => {
         ref={dropdown}
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
-        className={`absolute right-0 mt-4 flex w-48 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ${dropdownOpen === true ? 'block' : 'hidden'
-          }`}
+        className={`absolute right-0 mt-4 flex w-36 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ${
+          dropdownOpen === true ? 'block' : 'hidden'
+        }`}
       >
         <ul className='flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark'>
           {options?.map((option, i) => (
