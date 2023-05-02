@@ -35,14 +35,35 @@ const CardOne = ({ repository }) => {
           </svg>
         </span>
       </div>
+
+      <div className="mt-4 flex items-end justify-between">
+        <div>
+          <span className="text-sm font-medium">Open issues</span>
+        </div>
+        <span className="flex items-center gap-1 text-sm font-medium text-meta-1">
+          {repository.open_issues}
+        </span>
+      </div>
+
+      <div className="mt-4 flex items-end justify-between">
+        <div>
+          <span className="text-sm font-medium">Watchers</span>
+        </div>
+        <span className="flex items-center gap-1 text-sm font-medium text-meta-5">
+          {repository.watchers}
+        </span>
+      </div>
+
       <div className="mt-4 flex items-end justify-between">
         <Link
+          target="_blank"
           to={repository.html_url}
           className="inline-flex items-center justify-center rounded-md border border-primary p-2 text-center font-medium text-primary hover:bg-opacity-90 lg:px-8 xl:px-10"
         >
           View
         </Link>
         <Link
+          target="_blank"
           to={repository.homepage}
           className="inline-flex items-center justify-center rounded-md border border-primary p-2 text-center font-medium text-primary hover:bg-opacity-90 lg:px-8 xl:px-10"
         >

@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { languageOptions } from '../helpers/Constant';
 
-const DropdownLanguages = ({ setLanguage, language }) => {
+const DropdownSelect = ({ setData, data, options, label }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
@@ -42,15 +41,14 @@ const DropdownLanguages = ({ setLanguage, language }) => {
       >
         <span className='hidden text-right lg:block'>
           <span className='block text-sm font-medium text-black dark:text-white'>
-            {languageOptions.map((l) => l.value.includes(language) && l.label)}
+            {options?.map((option) => option?.value?.includes(data) && option?.label)}
           </span>
-          <span className='block text-xs'>Languages</span>
+          <span className='block text-xs'>{label}</span>
         </span>
 
         <svg
-          className={`fill-current sm:block ${
-            dropdownOpen ? 'rotate-180' : ''
-          }`}
+          className={`fill-current sm:block ${dropdownOpen ? 'rotate-180' : ''
+            }`}
           width='12'
           height='8'
           viewBox='0 0 12 8'
@@ -71,21 +69,20 @@ const DropdownLanguages = ({ setLanguage, language }) => {
         ref={dropdown}
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
-        className={`absolute right-0 mt-4 flex w-48 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ${
-          dropdownOpen === true ? 'block' : 'hidden'
-        }`}
+        className={`absolute right-0 mt-4 flex w-48 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ${dropdownOpen === true ? 'block' : 'hidden'
+          }`}
       >
         <ul className='flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark'>
-          {languageOptions.map((lang, i) => (
+          {options?.map((option, i) => (
             <li key={i}>
               <div
                 className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base'
                 onClick={() => {
-                  setLanguage(lang.value);
+                  setData(option.value);
                   setDropdownOpen(false);
                 }}
               >
-                {lang.label}
+                {option.label}
               </div>
             </li>
           ))}
@@ -96,4 +93,4 @@ const DropdownLanguages = ({ setLanguage, language }) => {
   );
 };
 
-export default DropdownLanguages;
+export default DropdownSelect;
