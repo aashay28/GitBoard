@@ -1,6 +1,5 @@
 import moment from 'moment';
 const TableThree = ({ userData }) => {
-  console.log('userData', userData);
   return (
     <div className='rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1'>
       <div className='max-w-full overflow-x-auto'>
@@ -32,7 +31,7 @@ const TableThree = ({ userData }) => {
                     {data.name}
                   </h5>
                   <p className='text-sm'>
-                    {moment(data.updated_at).format('MMM Do YY')}
+                    {data.fork === true ? 'Forked' : 'Admin'}
                   </p>
                 </td>
 
