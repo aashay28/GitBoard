@@ -80,7 +80,7 @@ const Profile = () => {
               {params.user}
             </h3>
             <p className='font-medium'>
-              {userBio?.company} / {userBio?.location}
+              {userBio?.company} {userBio?.location}
             </p>
             <div className='dark:bg-[#37404F] mx-auto mt-4.5 mb-5.5 grid max-w-94 grid-cols-3 rounded-md border border-stroke py-2.5 shadow-1 dark:border-strokedark'>
               <div className='flex flex-col items-center justify-center gap-1 border-r border-stroke px-4 dark:border-strokedark xsm:flex-row'>

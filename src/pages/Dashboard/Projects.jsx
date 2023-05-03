@@ -9,14 +9,14 @@ const Projects = () => {
   const [repositories, setRepositories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [filterLoading, setFilterLoading] = useState(false);
-  const [language, setLanguage] = useState('python');
+  const [language, setLanguage] = useState('javascript');
   const [direction, setDirection] = useState('desc');
 
   useEffect(() => {
     setIsLoading(true);
     axios
       .get(
-        `https://api.github.com/search/repositories?q=language:${language}+stars:>=100&sort=stars&order=${direction}`
+        `https://api.github.com/search/repositories?q=language:${language}+stars:<=500&sort=stars&order=${direction}`
       )
       .then((response) => {
         setRepositories(response.data.items);
@@ -30,7 +30,7 @@ const Projects = () => {
 
   return (
     <DefaultLayout>
-      <div className='flex gap-8 mb-4 rounded-sm border border-stroke bg-white py-5 px-5 justify-end'>
+      <div className='flex gap-8 mb-4 rounded-sm border border-stroke bg-white py-5 px-5 justify-end dark:border-strokedark dark:bg-boxdark'>
         {!filterLoading && (
           <>
             <div>
@@ -52,11 +52,11 @@ const Projects = () => {
             <div>
               <button
                 type='button'
-                className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
+                className='border border-primary p-2 text-center font-medium text-primary focus:ring-1 focus:ring-blue-400 rounded-lg text-sm px-2 py-2.5 mr-2 mb-2 '
                 onClick={() => {
                   setFilterLoading(true);
                   setTimeout(() => {
-                    setLanguage('python');
+                    setLanguage('javascript');
                     setDirection('desc');
                     setFilterLoading(false);
                   }, 10);

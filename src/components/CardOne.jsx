@@ -8,7 +8,7 @@ const CardOne = ({ repository }) => {
   return (
     <div className='rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark'>
       <div
-        className='flex  items-center justify-start'
+        className='flex  items-center justify-start cursor-pointer'
         onClick={() => handleProfile(repository.owner.login)}
       >
         <img
@@ -54,10 +54,10 @@ const CardOne = ({ repository }) => {
 
       <div className='mt-4 flex items-end justify-between'>
         <div>
-          <span className='text-sm font-medium'>Watchers</span>
+          <span className='text-sm font-medium'>Stars</span>
         </div>
         <span className='flex items-center gap-1 text-sm font-medium text-meta-5'>
-          {repository.watchers}
+          {repository.stargazers_count}
         </span>
       </div>
 
