@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import { fetchApi } from '../helpers/fetchApi';
+import TableThree from '../components/TableThree';
 
 const Profile = () => {
   const [userData, setUserData] = useState();
@@ -271,6 +272,8 @@ const Profile = () => {
           </div>
         </div>
       </div>
+
+      <TableThree userData={userData} />
     </DefaultLayout>
   );
 };
