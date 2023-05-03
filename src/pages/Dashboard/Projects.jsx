@@ -1,31 +1,31 @@
 import DefaultLayout from '../../layout/DefaultLayout';
 import CardOne from '../../components/CardOne';
 import Spinner from '../../helpers/Spinner';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { languageOptions, sortDirection } from '../../helpers/Constant';
 import DropdownSelect from '../../components/DropdownSelect';
+import { fetchApi } from '../../helpers/fetchApi';
+import ContextRepositery from '../../context/ContextRepositery';
 const Projects = () => {
-  const [repositories, setRepositories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [filterLoading, setFilterLoading] = useState(false);
   const [language, setLanguage] = useState('javascript');
   const [direction, setDirection] = useState('desc');
 
+  const { repositories, setRepositories } = useContext(ContextRepositery);
+  const getRepoDetails = async () => {
+    setRepositories(
+      (
+        await fetchApi(
+          `search/repositories?q=language:${language}+stars:<=500&sort=stars&order=${direction}`
+        )
+      ).items
+    );
+    setIsLoading(false);
+  };
   useEffect(() => {
     setIsLoading(true);
-    axios
-      .get(
-        `https://api.github.com/search/repositories?q=language:${language}+stars:<=500&sort=stars&order=${direction}`
-      )
-      .then((response) => {
-        setRepositories(response.data.items);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setIsLoading(false);
-      });
+    getRepoDetails();
   }, [language, direction]);
 
   return (
@@ -70,7 +70,7 @@ const Projects = () => {
       </div>
       {!isLoading ? (
         <div className='grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5'>
-          {repositories.map((repository) => (
+          {repositories?.map((repository) => (
             <div key={repository.id}>
               <CardOne repository={repository} />
             </div>
