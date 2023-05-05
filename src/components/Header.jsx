@@ -160,7 +160,7 @@ const Header = (props) => {
                     className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base'
                     onClick={() => {
                       setSearchValue(searchValue.concat(con.value));
-                      setDropdownOpen(false);
+                      trigger.current.focus();
                     }}
                   >
                     {con?.label}
