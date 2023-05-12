@@ -5,6 +5,7 @@ const CardOne = ({ repository }) => {
   const handleProfile = (user) => {
     navigate(`/profile/${user}`);
   };
+  console.log('repositery', repository);
   return (
     <div className='rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark'>
       <div
@@ -70,11 +71,15 @@ const CardOne = ({ repository }) => {
           View
         </Link>
         <Link
-          target='_blank'
-          to={repository.homepage}
-          className='inline-flex items-center justify-center rounded-md border border-primary p-2 text-center font-medium text-primary hover:bg-opacity-90 lg:px-8 '
+          target={repository.homepage ? '_blank' : ''}
+          to={repository.homepage ? repository.homepage : ''}
+          className={`inline-flex items-center justify-center rounded-md border ${
+            !repository.homepage
+              ? 'border-gray-500 text-gray-500'
+              : 'border-primary text-primary'
+          } p-2 text-center font-medium  hover:bg-opacity-90 lg:px-8`}
         >
-          Preview
+          {repository.homepage ? 'Preview' : 'No Preview'}
         </Link>
       </div>
     </div>
