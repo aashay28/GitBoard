@@ -5,9 +5,9 @@ const CardOne = ({ repository }) => {
   const handleProfile = (user) => {
     navigate(`/profile/${user}`);
   };
-  console.log('repositery', repository);
+
   return (
-    <div className='rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark'>
+    <div className='rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark'>
       <div
         className='flex  items-center justify-start cursor-pointer'
         onClick={() => handleProfile(repository.owner.login)}
@@ -62,11 +62,11 @@ const CardOne = ({ repository }) => {
         </span>
       </div>
 
-      <div className='mt-4 flex items-end justify-between gap-2'>
+      <div className='mt-4 flex items-end justify-between gap-2 text-sm'>
         <Link
           target='_blank'
           to={repository.html_url}
-          className='inline-flex items-center justify-center rounded-md border border-primary p-2 text-center font-medium text-primary hover:bg-opacity-90 lg:px-8 '
+          className='inline-flex items-center justify-center rounded-md border border-primary text-center p-2 font-medium text-primary hover:bg-opacity-90 lg:px-8 '
         >
           View
         </Link>
