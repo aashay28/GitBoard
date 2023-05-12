@@ -5,7 +5,7 @@ const CardOne = ({ repository }) => {
   const handleProfile = (user) => {
     navigate(`/profile/${user}`);
   };
-  console.log('repositery', repository);
+
   return (
     <div className='rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark'>
       <div
