@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Projects from './pages/Dashboard/Projects';
+import Projects from './pages/Projects';
 import Calendar from './pages/Calendar';
 import Profile from './pages/Profile';
+import Dashboard from './pages/Dashboard';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -24,7 +25,8 @@ const App = () => {
     !loading && (
       <>
         <Routes>
-          <Route exact path='/' element={<Projects />} />
+          <Route exact path='/' element={<Dashboard />} />
+          <Route path='/projects' element={<Projects />} />
           <Route path='/calendar' element={<Calendar />} />
           <Route path='/profile/:user' element={<Profile />} />
         </Routes>

@@ -1,11 +1,11 @@
-import DefaultLayout from '../../layout/DefaultLayout';
-import CardOne from '../../components/CardOne';
-import Spinner from '../../helpers/Spinner';
+import DefaultLayout from '../layout/DefaultLayout';
+import CardOne from '../components/CardOne';
+import Spinner from '../helpers/Spinner';
 import { useContext, useEffect, useState } from 'react';
-import { languageOptions, sortDirection } from '../../helpers/Constant';
-import DropdownSelect from '../../components/DropdownSelect';
-import { fetchApi } from '../../helpers/fetchApi';
-import ContextRepositery from '../../context/ContextRepositery';
+import { languageOptions, sortDirection } from '../helpers/Constant';
+import DropdownSelect from '../components/DropdownSelect';
+import { fetchApi } from '../helpers/fetchApi';
+import ContextRepositery from '../context/ContextRepositery';
 const Projects = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [filterLoading, setFilterLoading] = useState(false);
