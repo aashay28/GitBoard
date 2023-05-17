@@ -6,7 +6,7 @@ const DefaultLayout = ({ children, setLanguage, language }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className='dark:bg-boxdark-2 dark:text-bodydark'>
+    <div className='dark:bg-boxdark-2 '>
       {/* <!-- ===== Page Wrapper Start ===== --> */}
       <div className='flex h-screen overflow-hidden'>
         {/* <!-- ===== Sidebar Start ===== --> */}
