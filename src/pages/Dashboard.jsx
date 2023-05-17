@@ -1,5 +1,5 @@
 import DefaultLayout from '../layout/DefaultLayout';
-
+import dashboardImage from '../images/cover/dashboard.jpg';
 const Dashboard = () => {
   return (
     <DefaultLayout>
@@ -33,7 +33,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className='hidden lg:mt-0 lg:col-span-5 lg:flex'>
-            <img src='src/images/cover/dashboard.jpg' alt='hero image' />
+            <img src={dashboardImage} alt='hero image' />
           </div>
         </div>
       </section>
