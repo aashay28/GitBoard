@@ -29,7 +29,7 @@ To create this website we used:
 + Contributing to open source is a fantastic way to learn new skills, gain practical experience, and connect with like-minded individuals.
 
 
-**Take a look at [Contributing Guide](/contributing.md) for further guidance.**
+**Take a look at [Contributing Guide](/Contributing.md) for further guidance.**
 
 # License 📝
 
