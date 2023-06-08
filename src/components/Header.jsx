@@ -176,7 +176,7 @@ const Header = (props) => {
             <div className='hidden md:block lg:block'>
               <button
                 type='button'
-                className='border border-primary  text-center font-medium text-primary focus:ring-1 focus:ring-blue-400 rounded-lg text-sm p-2 '
+                className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'
                 onClick={getRepoDetails}
               >
                 Search
