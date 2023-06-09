@@ -173,15 +173,13 @@ const Header = (props) => {
 
         <div className='flex items-center gap-3 2xsm:gap-7'>
           <ul className='flex items-center gap-2 2xsm:gap-4'>
-            <div className='hidden md:block lg:block'>
-              <button
-                type='button'
-                className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'
-                onClick={getRepoDetails}
-              >
-                Search
-              </button>
-            </div>
+            <div className='group relative inline-block overflow-hidden rounded  bg-gray  px-5 py-3 text-sm font-medium text-primary hover:animate-pulse focus:outline-none focus:ring active:bg-primary active:text-white'>
+              <span className='ease absolute left-0 top-0 h-0 w-0 border-t-2 border-primary transition-all duration-200 group-hover:w-full'></span>
+              <span className='ease absolute right-0 top-0 h-0 w-0 border-r-2 border-primary transition-all duration-200 group-hover:h-full'></span>
+              <span className='ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-primary transition-all duration-200 group-hover:w-full'></span>
+              <span className='ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-primary transition-all duration-200 group-hover:h-full'></span> 
+              Search
+            </div>     
             {/* <!-- Dark Mode Toggler --> */}
             <DarkModeSwitcher />
             {/* <!-- Dark Mode Toggler --> */}
