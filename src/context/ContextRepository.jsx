@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-const ContextRepositery = React.createContext({
+const ContextRepository = React.createContext({
   repositories: {},
   setRepositories: () => {},
 });
-export const ContextRepositeryProvider = (props) => {
+export const ContextRepositoryProvider = (props) => {
   const [repositories, setRepositories] = useState([]);
 
   const contextValue = {
@@ -12,9 +12,9 @@ export const ContextRepositeryProvider = (props) => {
     setRepositories,
   };
   return (
-    <ContextRepositery.Provider value={contextValue}>
+    <ContextRepository.Provider value={contextValue}>
       {props.children}
-    </ContextRepositery.Provider>
+    </ContextRepository.Provider>
   );
 };
-export default ContextRepositery;
+export default ContextRepository;
