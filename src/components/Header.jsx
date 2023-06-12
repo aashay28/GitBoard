@@ -6,20 +6,23 @@ import {useQueryParam, StringParam} from 'use-query-params';
 
 const Header = (props) => {
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useQueryParam('searchTerm', StringParam);
-  const [query, setQuery] = useState();
+  const [searchTermQueryParam, setSearchTermQueryParam] = useQueryParam(
+    'searchTerm',
+    StringParam
+  );
+  const [searchTerm, setSearchTerm] = useState();
   const searchHandler = (e) => {
-    setQuery(e.target.value);
+    setSearchTerm(e.target.value);
   };
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const trigger = useRef(null);
   const dropdown = useRef(null);
 
   useEffect(() => {
-    if (searchTerm) {
-      setQuery(searchTerm);
+    if (searchTermQueryParam) {
+      setSearchTerm(searchTermQueryParam);
     }
-  }, [searchTerm]);
+  }, [searchTermQueryParam]);
 
   // close on click outside
   useEffect(() => {
@@ -39,10 +42,6 @@ const Header = (props) => {
 
   // close if the esc key is pressed
   useEffect(() => {
-    // set the search term when page is loaded from the query parameters
-    if (searchTerm) {
-      setSearchTerm(searchTerm);
-    }
     const keyHandler = ({keyCode}) => {
       if (!dropdownOpen || keyCode !== 27) return;
       setDropdownOpen(false);
@@ -54,9 +53,9 @@ const Header = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!(window.location.pathname === '/projects')) {
-      navigate(`/projects?searchTerm=${query}`);
+      navigate(`/projects?searchTerm=${searchTerm}`);
     } else {
-      setSearchTerm(query);
+      setSearchTermQueryParam(searchTerm);
     }
   };
 
@@ -148,7 +147,7 @@ const Header = (props) => {
               type='text'
               placeholder='language:python+stars:<=10&sort:stars or user:aashay28'
               className='w-full bg-transparent pr-4 pl-9 focus:outline-none relative'
-              value={query || ''}
+              value={searchTerm || ''}
               onChange={(e) => searchHandler(e)}
               ref={trigger}
               onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -170,7 +169,9 @@ const Header = (props) => {
                   <div
                     className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base'
                     onClick={() => {
-                      setSearchTerm(searchTerm.concat(con.value));
+                      setSearchTermQueryParam(
+                        searchTermQueryParam.concat(con.value)
+                      );
                       trigger.current.focus();
                     }}
                   >
