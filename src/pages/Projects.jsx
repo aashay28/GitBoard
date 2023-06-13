@@ -1,32 +1,54 @@
+import {useCallback, useContext, useEffect, useState} from 'react';
 import DefaultLayout from '../layout/DefaultLayout';
 import CardOne from '../components/CardOne';
 import Spinner from '../helpers/Spinner';
-import { useContext, useEffect, useState } from 'react';
-import { languageOptions, sortDirection } from '../helpers/Constant';
+import {languageOptions, sortDirection} from '../helpers/Constant';
 import DropdownSelect from '../components/DropdownSelect';
-import { fetchApi } from '../helpers/fetchApi';
-import ContextRepositery from '../context/ContextRepositery';
+import {fetchApi} from '../helpers/fetchApi';
+import ContextRepository from '../context/ContextRepository';
+import {useQueryParam, StringParam} from 'use-query-params';
+
 const Projects = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [filterLoading, setFilterLoading] = useState(false);
   const [language, setLanguage] = useState('javascript');
   const [direction, setDirection] = useState('desc');
+  const [searchTerm, setSearchTerm] = useQueryParam('searchTerm', StringParam);
 
-  const { repositories, setRepositories } = useContext(ContextRepositery);
-  const getRepoDetails = async () => {
-    setRepositories(
-      (
-        await fetchApi(
-          `search/repositories?q=language:${language}+stars:<=500&sort=stars&order=${direction}`
-        )
-      ).items
-    );
-    setIsLoading(false);
-  };
+  const {repositories, setRepositories} = useContext(ContextRepository);
+
+  const getRepoDetails = useCallback(
+    async (searchTerm) => {
+      setIsLoading(true);
+      setRepositories(
+        (await fetchApi(`search/repositories?q=${searchTerm}`)).items
+      );
+      setIsLoading(false);
+    },
+    [setRepositories]
+  );
+
   useEffect(() => {
-    setIsLoading(true);
-    getRepoDetails();
-  }, [language, direction]);
+    if (searchTerm) {
+      getRepoDetails(searchTerm);
+    } else {
+      setSearchTerm(`language:javascript+stars:<=500&sort=stars&order=desc`);
+    }
+  }, [getRepoDetails, searchTerm, setSearchTerm]);
+
+  const setSearchTermAndDirection = (direction) => {
+    setDirection(direction);
+    setSearchTerm(
+      `language:${language}+stars:<=500&sort=stars&order=${direction}`
+    );
+  };
+
+  const setSearchTermAndLanguage = (language) => {
+    setLanguage(language);
+    setSearchTerm(
+      `language:${language}+stars:<=500&sort=stars&order=${direction}`
+    );
+  };
 
   return (
     <DefaultLayout>
@@ -35,7 +57,7 @@ const Projects = () => {
           <>
             <div>
               <DropdownSelect
-                setData={setDirection}
+                setData={setSearchTermAndDirection}
                 data={direction}
                 options={sortDirection}
                 label={'Direction'}
@@ -43,7 +65,7 @@ const Projects = () => {
             </div>
             <div>
               <DropdownSelect
-                setData={setLanguage}
+                setData={setSearchTermAndLanguage}
                 data={language}
                 options={languageOptions}
                 label={'Language'}

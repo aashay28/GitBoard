@@ -1,25 +1,32 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import DarkModeSwitcher from './DarkModeSwitcher';
-import { Link, useNavigate } from 'react-router-dom';
-import { conditionalOperators } from '../helpers/Constant';
-import ContextRepositery from '../context/ContextRepositery';
-import { fetchApi } from '../helpers/fetchApi';
+import {Link, useNavigate} from 'react-router-dom';
+import {conditionalOperators} from '../helpers/Constant';
+import {useQueryParam, StringParam} from 'use-query-params';
 
 const Header = (props) => {
-  const { setRepositories } = useContext(ContextRepositery);
-
   const navigate = useNavigate();
-  const [searchValue, setSearchValue] = useState('');
+  const [searchTermQueryParam, setSearchTermQueryParam] = useQueryParam(
+    'searchTerm',
+    StringParam
+  );
+  const [searchTerm, setSearchTerm] = useState();
   const searchHandler = (e) => {
-    setSearchValue(e.target.value);
+    setSearchTerm(e.target.value);
   };
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const trigger = useRef(null);
   const dropdown = useRef(null);
 
+  useEffect(() => {
+    if (searchTermQueryParam) {
+      setSearchTerm(searchTermQueryParam);
+    }
+  }, [searchTermQueryParam]);
+
   // close on click outside
   useEffect(() => {
-    const clickHandler = ({ target }) => {
+    const clickHandler = ({target}) => {
       if (!dropdown.current) return;
       if (
         !dropdownOpen ||
@@ -35,7 +42,7 @@ const Header = (props) => {
 
   // close if the esc key is pressed
   useEffect(() => {
-    const keyHandler = ({ keyCode }) => {
+    const keyHandler = ({keyCode}) => {
       if (!dropdownOpen || keyCode !== 27) return;
       setDropdownOpen(false);
     };
@@ -43,19 +50,18 @@ const Header = (props) => {
     return () => document.removeEventListener('keydown', keyHandler);
   });
 
-  const getRepoDetails = async () => {
-    if (searchValue.startsWith('user:')) {
-      navigate(`/profile/${searchValue.slice(5)}`);
-      return;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!(window.location.pathname === '/projects')) {
+      navigate(`/projects?searchTerm=${searchTerm}`);
+    } else {
+      setSearchTermQueryParam(searchTerm);
     }
-    setRepositories(
-      (await fetchApi(`search/repositories?q=${searchValue}`)).items
-    );
   };
 
   return (
     <header className='sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none'>
-      <div className='flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11'>
+      <div className='flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11 space-x-4'>
         <div className='flex items-center gap-2 sm:gap-4 lg:hidden'>
           {/* <!-- Hamburger Toggle BTN --> */}
           <button
@@ -108,8 +114,11 @@ const Header = (props) => {
           </Link>
         </div>
 
-        <div className='hidden sm:block w-full'>
-          <div className='relative'>
+        <form
+          className='hidden sm:flex justify-between w-full'
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <div className='flex items-center relative grow align-middle '>
             <button className='absolute top-1/2 left-0 -translate-y-1/2'>
               <svg
                 className='fill-body hover:fill-primary dark:fill-bodydark dark:hover:fill-primary'
@@ -138,10 +147,11 @@ const Header = (props) => {
               type='text'
               placeholder='language:python+stars:<=10&sort:stars or user:aashay28'
               className='w-full bg-transparent pr-4 pl-9 focus:outline-none relative'
-              value={searchValue || ''}
+              value={searchTerm || ''}
               onChange={(e) => searchHandler(e)}
               ref={trigger}
               onClick={() => setDropdownOpen(!dropdownOpen)}
+              required
             />
           </div>
 
@@ -159,7 +169,9 @@ const Header = (props) => {
                   <div
                     className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base'
                     onClick={() => {
-                      setSearchValue(searchValue.concat(con.value));
+                      setSearchTermQueryParam(
+                        searchTermQueryParam.concat(con.value)
+                      );
                       trigger.current.focus();
                     }}
                   >
@@ -169,22 +181,25 @@ const Header = (props) => {
               ))}
             </ul>
           </div>
-        </div>
 
-        <div className='flex items-center gap-3 2xsm:gap-7'>
-          <ul className='flex items-center gap-2 2xsm:gap-4'>
-            <div className='group relative inline-block overflow-hidden rounded  bg-gray  px-5 py-3 text-sm font-medium text-primary hover:animate-pulse focus:outline-none focus:ring active:bg-primary active:text-white'>
-              <span className='ease absolute left-0 top-0 h-0 w-0 border-t-2 border-primary transition-all duration-200 group-hover:w-full'></span>
-              <span className='ease absolute right-0 top-0 h-0 w-0 border-r-2 border-primary transition-all duration-200 group-hover:h-full'></span>
-              <span className='ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-primary transition-all duration-200 group-hover:w-full'></span>
-              <span className='ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-primary transition-all duration-200 group-hover:h-full'></span> 
-              Search
-            </div>     
-            {/* <!-- Dark Mode Toggler --> */}
-            <DarkModeSwitcher />
-            {/* <!-- Dark Mode Toggler --> */}
-          </ul>
-        </div>
+          <div className='flex items-center gap-3 2xsm:gap-7'>
+            <ul className='flex items-center gap-2 2xsm:gap-4'>
+              <button
+                type='submit'
+                className='group relative inline-block overflow-hidden rounded  bg-gray  px-5 py-3 text-sm font-medium text-primary hover:animate-pulse focus:outline-none focus:ring active:bg-primary active:text-white'
+              >
+                <span className='ease absolute left-0 top-0 h-0 w-0 border-t-2 border-primary transition-all duration-200 group-hover:w-full'></span>
+                <span className='ease absolute right-0 top-0 h-0 w-0 border-r-2 border-primary transition-all duration-200 group-hover:h-full'></span>
+                <span className='ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-primary transition-all duration-200 group-hover:w-full'></span>
+                <span className='ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-primary transition-all duration-200 group-hover:h-full'></span>
+                Search
+              </button>
+            </ul>
+          </div>
+        </form>
+        {/* <!-- Dark Mode Toggler --> */}
+        <DarkModeSwitcher />
+        {/* <!-- Dark Mode Toggler --> */}
       </div>
     </header>
   );
