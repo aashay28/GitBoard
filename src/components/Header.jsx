@@ -159,11 +159,11 @@ const Header = (props) => {
             ref={dropdown}
             onFocus={() => setDropdownOpen(true)}
             onBlur={() => setDropdownOpen(false)}
-            className={`absolute mx-7 mt-5 flex w-36 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ${
+            className={`absolute mx-7 mt-15 flex w-36 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ${
               dropdownOpen === true ? 'block' : 'hidden'
             }`}
           >
-            <ul className='flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark'>
+            <ul className='flex flex-col  gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark'>
               {conditionalOperators?.map((con, i) => (
                 <li key={i}>
                   <div
