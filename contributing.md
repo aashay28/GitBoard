@@ -18,22 +18,108 @@ If you spot a problem with the docs, [search if an issue already exists](https:/
 
 Scan through our [existing issues](https://github.com/github/docs/issues) to find one that interests you. You can narrow down the search using `labels` as filters. See [Labels](/contributing/how-to-use-labels.md) for more information. As a general rule, we don’t assign issues to anyone. If you find an issue to work on, you are welcome to open a PR with a fix.
 
+## <span id="contributing">🤝 Contributing</span>
 
-#### Make changes
+Follow these steps to contribute to the project:
 
-1. Fork the repository.
+- ### Step 1
 
-2. Install the packages.
+  Fork this repository
+<p align="center">
+  <img src="https://github.com/aashay28/GitBoard/assets/108337259/512ffce8-85f6-4873-9437-4a77bd8dbc7a" alt="fork" />
+</p>
 
-3. Create a new branch for your contribution (e.g. `git checkout -b my-new-feature`)
+- ### Step 2:
 
-4. Commit your changes (e.g. `git commit -m 'Add some feature'`)
+  Now clone the forked repository to your machine. Go to your GitHub account, open the forked repository, click on the code button and then click the copy to clipboard icon.
 
-5. Add upstream command to your fork (e.g. `git remote add upstream https://github.com/aashay28/GitBoard.git`)
+<p align="center">
+  <img src="https://github.com/aashay28/GitBoard/assets/108337259/aa3f2ad9-a90f-4363-ab50-e2afe0ef632d" alt="clone">
+</p>
 
-6. Push your changes to your fork (e.g. `git push origin my-new-feature`)
+Open a terminal and run the following git command:
 
-7. Create a pull request
+```bash
+git clone "url you just copied"
+```
+
+where "url you just copied" (without the quotation marks) is the url to this repository (your fork of this project). See the previous steps to obtain the url.
+
+<p align="center">
+  <img src="https://github.com/aashay28/GitBoard/assets/108337259/2902da0f-fe07-42fe-a63c-a26f55d68b6f" alt="opy">
+</p>
+
+The code will look something like this :
+
+```bash
+git clone https://github.com/{your user name}/GitBoard.git
+```
+
+- ### Step 3:
+
+  Navigate to GitBoard on your device
+
+  ```bash
+  cd GitBoard/
+  ```
+   ```bash
+  npm install
+  ```
+   ```bash
+    npm run dev
+    ```
+  
+- ### Step 4:
+
+  - Add an upstream link to the main branch in your cloned repo
+
+  ```bash
+  git remote add upstream https://github.com/aashay28/GitBoard
+  ```
+
+  - Keep your cloned repo up to date by pulling from upstream (this will also avoid any merge conflicts while committing new changes)
+
+  ```bash
+  git pull upstream main
+  ```
+
+- ### Step 5:
+
+  Create your feature branch (This is a necessary step, so don't skip it)
+
+  ```bash
+  git checkout -b <feature-name>
+  ```
+
+- ### Step 6: Make necessary changes and commit those changes
+
+  Add your commits to the staging
+
+  ```
+  git add .
+  ```
+
+- ### Step 7: Commit the changes
+
+  - Now commit those changes using the `git commit` command:
+
+  ```bash
+  git commit -m "Write a meaningful but small commit message"
+  ```
+
+- ### Step 8: Push your code.
+
+  Push your changes using the command `git push` :
+
+  ```bash
+  git push -u origin your-branch-name
+  ```
+
+- ### Step 9:
+
+  Create a PR on Github. (Don't just hit the create a pull request button, you must write a PR message to clarify why and what are you contributing)
+
+
 
 
 
