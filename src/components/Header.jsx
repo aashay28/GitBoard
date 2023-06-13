@@ -159,7 +159,7 @@ const Header = (props) => {
             ref={dropdown}
             onFocus={() => setDropdownOpen(true)}
             onBlur={() => setDropdownOpen(false)}
-            className={`absolute mx-7 mt-14 flex w-36 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ${
+            className={`absolute mx-7 mt-15 flex w-36 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ${
               dropdownOpen === true ? 'block' : 'hidden'
             }`}
           >
