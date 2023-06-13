@@ -66,8 +66,8 @@ git clone https://github.com/{your user name}/GitBoard.git
   npm install
   ```
    ```bash
-    npm run dev
-    ```
+   npm run dev
+   ```
   
 - ### Step 4:
 
