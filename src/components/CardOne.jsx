@@ -7,7 +7,7 @@ const CardOne = ({ repository }) => {
   };
 
   return (
-    <div className='rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark hover:bg-transparent'>
+    <div className='rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark hover:scale-110 transition-all duration-700'>
       <div
         className='flex  items-center justify-start cursor-pointer'
         onClick={() => handleProfile(repository.owner.login)}
