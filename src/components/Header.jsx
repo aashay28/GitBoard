@@ -56,7 +56,25 @@ const Header = (props) => {
             </div>
           </Link>
         </div>
-
+        <div className='relative'>
+          <div className='flex items-center gap-4'>
+            <span>
+              <img
+                className='h-12 w-12 rounded-full'
+                src='https://cdn-icons-png.flaticon.com/512/219/219959.png'
+                alt='User'
+              />
+            </span>
+            <span className='hidden text-left lg:block'>
+              <span className='block text-sm font-medium text-black dark:text-white'>
+                Aashay Shah
+              </span>
+              <span className='block text-xs font-medium'>
+                Software Engineer
+              </span>
+            </span>
+          </div>
+        </div>
         {/* <!-- Dark Mode Toggler --> */}
         <DarkModeSwitcher />
         {/* <!-- Dark Mode Toggler --> */}
