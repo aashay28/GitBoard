@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 
-const DefaultLayout = ({ children, setLanguage, language }) => {
+const DefaultLayout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -16,12 +16,7 @@ const DefaultLayout = ({ children, setLanguage, language }) => {
         {/* <!-- ===== Content Area Start ===== --> */}
         <div className='relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden'>
           {/* <!-- ===== Header Start ===== --> */}
-          <Header
-            sidebarOpen={sidebarOpen}
-            setSidebarOpen={setSidebarOpen}
-            setLanguage={setLanguage}
-            language={language}
-          />
+          <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           {/* <!-- ===== Header End ===== --> */}
 
           {/* <!-- ===== Main Content Start ===== --> */}
