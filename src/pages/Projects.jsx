@@ -1,12 +1,13 @@
-import {useCallback, useContext, useEffect, useState} from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import DefaultLayout from '../layout/DefaultLayout';
 import CardOne from '../components/CardOne';
 import Spinner from '../helpers/Spinner';
-import {languageOptions, sortDirection} from '../helpers/Constant';
+import { languageOptions, sortDirection } from '../helpers/Constant';
 import DropdownSelect from '../components/DropdownSelect';
-import {fetchApi} from '../helpers/fetchApi';
+import { fetchApi } from '../helpers/fetchApi';
 import ContextRepository from '../context/ContextRepository';
-import {useQueryParam, StringParam} from 'use-query-params';
+import { useQueryParam, StringParam } from 'use-query-params';
+import SearchBar from '../components/SearchBar';
 
 const Projects = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +16,7 @@ const Projects = () => {
   const [direction, setDirection] = useState('desc');
   const [searchTerm, setSearchTerm] = useQueryParam('searchTerm', StringParam);
 
-  const {repositories, setRepositories} = useContext(ContextRepository);
+  const { repositories, setRepositories } = useContext(ContextRepository);
 
   const getRepoDetails = useCallback(
     async (searchTerm) => {
@@ -52,6 +53,9 @@ const Projects = () => {
 
   return (
     <DefaultLayout>
+      <div className='flex gap-8 mb-4 rounded-sm border border-stroke bg-white py-5 px-5 justify-end dark:border-strokedark dark:bg-boxdark'>
+        <SearchBar />
+      </div>
       <div className='flex gap-8 mb-4 rounded-sm border border-stroke bg-white py-5 px-5 justify-end dark:border-strokedark dark:bg-boxdark'>
         {!filterLoading && (
           <>
