@@ -6,9 +6,12 @@ const DropdownSelect = ({ setData, data, options, label }) => {
   const trigger = useRef(null);
   const dropdown = useRef(null);
 
+  const selectedLabel =
+    options.find((option) => option?.value === data)?.label || '';
+
   // close on click outside
   useEffect(() => {
-    const clickHandler = ({ target }) => {
+    const clickHandler = ({target}) => {
       if (!dropdown.current) return;
       if (
         !dropdownOpen ||
@@ -24,7 +27,7 @@ const DropdownSelect = ({ setData, data, options, label }) => {
 
   // close if the esc key is pressed
   useEffect(() => {
-    const keyHandler = ({ keyCode }) => {
+    const keyHandler = ({keyCode}) => {
       if (!dropdownOpen || keyCode !== 27) return;
       setDropdownOpen(false);
     };
@@ -41,9 +44,7 @@ const DropdownSelect = ({ setData, data, options, label }) => {
       >
         <span className='text-right lg:block'>
           <span className='block text-sm font-medium text-black dark:text-white'>
-            {options?.map(
-              (option) => option?.value?.includes(data) && option?.label
-            )}
+            {selectedLabel}
           </span>
           <span className='block text-xs'>{label}</span>
         </span>
