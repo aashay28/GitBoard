@@ -1,8 +1,17 @@
 import DefaultLayout from '../layout/DefaultLayout';
 import dashboardImage from '../images/cover/dashboard.jpg';
 import Github from '../images/brand/brand-03.svg';
+import { useState } from 'react';
 
 const Dashboard = () => {
+  const [username, setUsername] = useState('');
+  const handleInputChange = (event) => {
+    setUsername(event.target.value);
+  };
+  const handleEnterClick = () => {
+    localStorage.setItem('username', username);
+    console.log('Username stored in local storage:', username);
+  };
   return (
     <DefaultLayout>
       <section className='bg-white dark:bg-gray-800'>
@@ -11,17 +20,29 @@ const Dashboard = () => {
             <div className='flex-shrink-0'>
               <img src={Github} alt='Brand' />
             </div>
+            <input
+              type='text'
+              placeholder='Enter your github username'
+              className='bg-transparent w-32 md:w-64 focus:outline-none relative'
+              value={username}
+              onChange={handleInputChange}
+              required
+            />
           </div>
-          <input
-            type='text'
-            placeholder='Enter your github username'
-            className='w-full bg-transparent p-3 w-64 focus:outline-none relative'
-            // value={searchTerm || ''}
-            // onChange={(e) => searchHandler(e)}
-            // ref={trigger}
-            // onClick={() => setDropdownOpen(!dropdownOpen)}
-            required
-          />
+          <div className='flex items-center gap-3 2xsm:gap-7'>
+            <ul className='flex items-center gap-2 2xsm:gap-4'>
+              <button
+                onClick={handleEnterClick}
+                className='group relative inline-block overflow-hidden rounded  bg-gray  px-5 py-3 text-sm font-medium text-primary hover:animate-pulse focus:outline-none focus:ring active:bg-primary active:text-white'
+              >
+                <span className='ease absolute left-0 top-0 h-0 w-0 border-t-2 border-primary transition-all duration-200 group-hover:w-full'></span>
+                <span className='ease absolute right-0 top-0 h-0 w-0 border-r-2 border-primary transition-all duration-200 group-hover:h-full'></span>
+                <span className='ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-primary transition-all duration-200 group-hover:w-full'></span>
+                <span className='ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-primary transition-all duration-200 group-hover:h-full'></span>
+                Enter
+              </button>
+            </ul>
+          </div>
         </div>
 
         <div className='grid max-w-screen-xl px-4 pt-10 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12 lg:pt-14 '>
