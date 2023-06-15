@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { Link, useNavigate } from 'react-router-dom';
-const CardOne = ({ repository }) => {
+const Cards = ({ repository }) => {
   const navigate = useNavigate();
   const handleProfile = (user) => {
     navigate(`/profile/${user}`);
@@ -10,14 +10,14 @@ const CardOne = ({ repository }) => {
     <div className='rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark hover:bg-transparent'>
       <div
         className='flex  items-center justify-start cursor-pointer'
-        onClick={() => handleProfile(repository.owner.login)}
+        onClick={() => handleProfile(repository?.owner.login)}
       >
         <img
           className='rounded-full h-11.5 w-11.5'
-          src={repository.owner.avatar_url}
+          src={repository?.owner.avatar_url}
         />
         <h4 className='text-title-sm font-bold text-black dark:text-white px-2'>
-          {repository.name}
+          {repository?.name}
         </h4>
       </div>
 
@@ -27,7 +27,7 @@ const CardOne = ({ repository }) => {
         </div>
 
         <span className='flex items-center gap-1 text-sm font-medium text-meta-3'>
-          {moment(repository.updated_at).format('MMM Do YY')}
+          {moment(repository?.updated_at).format('MMM Do YY')}
           <svg
             className='fill-meta-3'
             width='10'
@@ -49,7 +49,7 @@ const CardOne = ({ repository }) => {
           <span className='text-sm font-medium'>Open issues</span>
         </div>
         <span className='flex items-center gap-1 text-sm font-medium text-meta-1'>
-          {repository.open_issues}
+          {repository?.open_issues}
         </span>
       </div>
 
@@ -58,32 +58,32 @@ const CardOne = ({ repository }) => {
           <span className='text-sm font-medium'>Stars</span>
         </div>
         <span className='flex items-center gap-1 text-sm font-medium text-meta-5'>
-          {repository.stargazers_count}
+          {repository?.stargazers_count}
         </span>
       </div>
 
       <div className='mt-4 flex items-end justify-between gap-2 text-sm'>
         <Link
           target='_blank'
-          to={repository.html_url}
+          to={repository?.html_url}
           className='inline-flex items-center justify-center rounded-md border border-primary text-center p-2 font-medium text-primary hover:bg-opacity-90 lg:px-8 '
         >
           View
         </Link>
         <Link
-          target={repository.homepage ? '_blank' : ''}
-          to={repository.homepage ? repository.homepage : ''}
+          target={repository?.homepage ? '_blank' : ''}
+          to={repository?.homepage ? repository?.homepage : ''}
           className={`inline-flex items-center justify-center rounded-md border ${
-            !repository.homepage
+            !repository?.homepage
               ? 'border-gray-500 text-gray-500'
               : 'border-primary text-primary'
           } p-2 text-center font-medium  hover:bg-opacity-90 lg:px-8`}
         >
-          {repository.homepage ? 'Preview' : 'No Preview'}
+          {repository?.homepage ? 'Preview' : 'No Preview'}
         </Link>
       </div>
     </div>
   );
 };
 
-export default CardOne;
+export default Cards;
