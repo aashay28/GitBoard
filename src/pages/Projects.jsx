@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import DefaultLayout from '../layout/DefaultLayout';
-import CardOne from '../components/CardOne';
+import Cards from '../components/Cards';
 import Spinner from '../helpers/Spinner';
 import { languageOptions, sortDirection } from '../helpers/Constant';
 import DropdownSelect from '../components/DropdownSelect';
@@ -98,7 +98,7 @@ const Projects = () => {
         <div className='grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5'>
           {repositories?.map((repository) => (
             <div key={repository.id}>
-              <CardOne repository={repository} />
+              <Cards repository={repository} />
             </div>
           ))}
         </div>
