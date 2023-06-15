@@ -1,7 +1,9 @@
+import { useContext } from 'react';
 import DarkModeSwitcher from './DarkModeSwitcher';
 import { Link } from 'react-router-dom';
-
+import ContextRepository from '../context/ContextRepository';
 const Header = (props) => {
+  const { userDetail } = useContext(ContextRepository);
   return (
     <header className='sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none'>
       <div className='flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11 space-x-4'>
@@ -61,16 +63,19 @@ const Header = (props) => {
             <span>
               <img
                 className='h-12 w-12 rounded-full'
-                src='https://cdn-icons-png.flaticon.com/512/219/219959.png'
+                src={
+                  userDetail?.avatar_url ||
+                  'https://cdn-icons-png.flaticon.com/512/219/219959.png'
+                }
                 alt='User'
               />
             </span>
             <span className='hidden text-left lg:block'>
               <span className='block text-sm font-medium text-black dark:text-white'>
-                Aashay Shah
+                {userDetail?.name || 'Username'}
               </span>
               <span className='block text-xs font-medium'>
-                Software Engineer
+                {userDetail?.company} {userDetail?.location}
               </span>
             </span>
           </div>

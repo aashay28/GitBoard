@@ -1,17 +1,20 @@
 import DefaultLayout from '../layout/DefaultLayout';
+import { fetchApi } from '../helpers/fetchApi';
 import dashboardImage from '../images/cover/dashboard.jpg';
 import Github from '../images/brand/brand-03.svg';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import ContextRepository from '../context/ContextRepository';
 
 const Dashboard = () => {
   const [username, setUsername] = useState('');
+  const { userDetail, setUserDetail } = useContext(ContextRepository);
   const handleInputChange = (event) => {
     setUsername(event.target.value);
   };
-  const handleEnterClick = () => {
-    localStorage.setItem('username', username);
-    console.log('Username stored in local storage:', username);
+  const handleEnterClick = async () => {
+    setUserDetail(await fetchApi(`users/${username}`));
   };
+
   return (
     <DefaultLayout>
       <section className='bg-white dark:bg-gray-800'>
@@ -24,7 +27,7 @@ const Dashboard = () => {
               type='text'
               placeholder='Enter your github username'
               className='bg-transparent w-32 md:w-64 focus:outline-none relative'
-              value={username}
+              value={userDetail?.login}
               onChange={handleInputChange}
               required
             />
