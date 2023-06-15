@@ -7,13 +7,19 @@ import FollowingCard from '../components/FollowingCard';
 import ChatCard from '../components/ChatCard';
 
 import TableOne from '../components/TableOne';
+import { useContext } from 'react';
+import ContextRepository from '../context/ContextRepository';
+import Breadcrumb from '../components/Breadcrumb';
 
 const Connections = () => {
+  const { userDetail } = useContext(ContextRepository);
+
   return (
     <DefaultLayout>
+      <Breadcrumb pageName='Connections' />
       <div className='grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5'>
-        <FollowersCard />
-        <FollowingCard />
+        <FollowersCard followers={userDetail?.followers} />
+        <FollowingCard following={userDetail?.following} />
         {/* <CardTwo />
         <CardThree /> */}
       </div>
