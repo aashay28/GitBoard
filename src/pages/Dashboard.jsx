@@ -1,10 +1,30 @@
 import DefaultLayout from '../layout/DefaultLayout';
 import dashboardImage from '../images/cover/dashboard.jpg';
+import Github from '../images/brand/brand-03.svg';
+
 const Dashboard = () => {
   return (
     <DefaultLayout>
       <section className='bg-white dark:bg-gray-800'>
-        <div className='grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28 '>
+        <div className='flex items-center relative grow align-middle'>
+          <div className='flex items-center gap-3 p-2.5 xl:p-5'>
+            <div className='flex-shrink-0'>
+              <img src={Github} alt='Brand' />
+            </div>
+          </div>
+          <input
+            type='text'
+            placeholder='Enter your github username'
+            className='w-full bg-transparent p-3 w-64 focus:outline-none relative'
+            // value={searchTerm || ''}
+            // onChange={(e) => searchHandler(e)}
+            // ref={trigger}
+            // onClick={() => setDropdownOpen(!dropdownOpen)}
+            required
+          />
+        </div>
+
+        <div className='grid max-w-screen-xl px-4 pt-10 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12 lg:pt-14 '>
           <div className='mr-auto place-self-center lg:col-span-7 '>
             <h1 className='max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl'>
               Board of <br />
