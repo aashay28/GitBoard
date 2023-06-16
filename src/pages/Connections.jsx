@@ -19,7 +19,7 @@ const Connections = () => {
   const { userDetail } = useContext(ContextRepository);
   const [followersList, setFollowersList] = useState();
   const [followingList, setFollowingList] = useState();
-  console.log('userDetail', userDetail);
+
   const getFollowDetails = async () => {
     if (userDetail) {
       setFollowersList(
@@ -33,7 +33,7 @@ const Connections = () => {
   useEffect(() => {
     getFollowDetails();
   }, [userDetail]);
-  console.log('followersList', followersList);
+
   const noFollowBack = followingList?.filter(
     (following) =>
       !followersList?.some((followers) => followers.login === following.login)
@@ -43,7 +43,7 @@ const Connections = () => {
     (followers) =>
       !followingList?.some((following) => following.login === followers.login)
   );
-  console.log('iAmNotFollowingBack', iAmNotFollowingBack);
+
   return (
     <DefaultLayout>
       <Breadcrumb pageName='Connections' />
@@ -59,16 +59,16 @@ const Connections = () => {
       </div>
 
       <div className='mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5'>
-        <div className='col-span-6 xl:col-span-6'>
+        <div className='col-span-12 xl:col-span-6'>
           <ChatCard title='Followers' follow={followersList} />
         </div>
-        <div className='col-span-6 xl:col-span-6'>
+        <div className='col-span-12 xl:col-span-6'>
           <ChatCard title='Following' follow={followingList} />
         </div>
-        <div className='col-span-6 xl:col-span-6'>
+        <div className='col-span-12 xl:col-span-6'>
           <ChatCard title='Not Following Back' follow={noFollowBack} />
         </div>
-        <div className='col-span-6 xl:col-span-6'>
+        <div className='col-span-12 xl:col-span-6'>
           <ChatCard title='Not Following' follow={iAmNotFollowingBack} />
         </div>
         {/* <div className='col-span-12 xl:col-span-8'>
