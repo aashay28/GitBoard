@@ -4,8 +4,10 @@ import dashboardImage from '../images/cover/dashboard.jpg';
 import Github from '../images/brand/brand-03.svg';
 import { useContext, useState } from 'react';
 import ContextRepository from '../context/ContextRepository';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const { userDetail, setUserDetail } = useContext(ContextRepository);
   const handleInputChange = (event) => {
@@ -13,6 +15,7 @@ const Dashboard = () => {
   };
   const handleEnterClick = async () => {
     setUserDetail(await fetchApi(`users/${username}`));
+    navigate('/connections');
   };
 
   return (
