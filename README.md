@@ -3,7 +3,7 @@ Gitboard is a website that displays all public repositories hosted on Git, enabl
 
 # Getting Started ⭐
 
-+ To get started with Gitboard, simply visit our [website](https://git-board-gamma.vercel.app/).
++ To get started with Gitboard, simply visit our [website](https://gitboardweb.vercel.app/).
 + From there, you can browse through open source projects, filter the projects and visit the user profile.
 + Check the [Contributing Guide](/contributing.md) for more information.
 
