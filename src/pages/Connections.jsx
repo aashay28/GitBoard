@@ -39,7 +39,7 @@ const Connections = () => {
       !followingList?.some((following) => following.login === followers.login)
   );
 
-  console.log('noFollowBack', iAmNotFollowingBack);
+ 
   return (
     <DefaultLayout>
       <Breadcrumb pageName='Connections' />
