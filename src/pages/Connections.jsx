@@ -19,16 +19,21 @@ const Connections = () => {
   const { userDetail } = useContext(ContextRepository);
   const [followersList, setFollowersList] = useState();
   const [followingList, setFollowingList] = useState();
+  console.log('userDetail', userDetail);
   const getFollowDetails = async () => {
     if (userDetail) {
-      setFollowersList(await fetchApi(`users/${userDetail.login}/followers`));
-      setFollowingList(await fetchApi(`users/${userDetail.login}/following`));
+      setFollowersList(
+        await fetchApi(`users/${userDetail.login}/followers?per_page=1000`)
+      );
+      setFollowingList(
+        await fetchApi(`users/${userDetail.login}/following?per_page=1000`)
+      );
     }
   };
   useEffect(() => {
     getFollowDetails();
   }, [userDetail]);
-
+  console.log('followersList', followersList);
   const noFollowBack = followingList?.filter(
     (following) =>
       !followersList?.some((followers) => followers.login === following.login)
@@ -38,7 +43,7 @@ const Connections = () => {
     (followers) =>
       !followingList?.some((following) => following.login === followers.login)
   );
-
+  console.log('iAmNotFollowingBack', iAmNotFollowingBack);
   return (
     <DefaultLayout>
       <Breadcrumb pageName='Connections' />
