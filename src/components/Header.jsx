@@ -1,50 +1,51 @@
-import { useContext } from 'react';
-import DarkModeSwitcher from './DarkModeSwitcher';
-import { Link } from 'react-router-dom';
-import ContextRepository from '../context/ContextRepository';
+import { useContext } from "react";
+import DarkModeSwitcher from "./DarkModeSwitcher";
+import { Link } from "react-router-dom";
+import ContextRepository from "../context/ContextRepository";
+
 const Header = (props) => {
   const { userDetail } = useContext(ContextRepository);
   return (
-    <header className='sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none'>
-      <div className='flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11 space-x-4'>
-        <div className='flex items-center gap-2 sm:gap-4 lg:hidden'>
+    <header className="sticky top-0 flex w-full bg-white z-999 drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
+      <div className="flex items-center justify-between flex-grow px-4 py-4 space-x-4 shadow-2 md:px-6 2xl:px-11">
+        <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
           {/* <!-- Hamburger Toggle BTN --> */}
           <button
-            aria-controls='sidebar'
+            aria-controls="sidebar"
             aria-expanded={props.sidebarOpen}
             onClick={(e) => {
               e.stopPropagation();
               props.setSidebarOpen(!props.sidebarOpen);
             }}
-            className='z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm dark:border-strokedark dark:bg-boxdark lg:hidden'
+            className="z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm dark:border-strokedark dark:bg-boxdark lg:hidden"
           >
-            <span className='relative block h-5.5 w-5.5 cursor-pointer'>
-              <span className='du-block absolute right-0 h-full w-full'>
+            <span className="relative block h-5.5 w-5.5 cursor-pointer">
+              <span className="absolute right-0 w-full h-full du-block">
                 <span
                   className={`relative top-0 left-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-[0] duration-200 ease-in-out dark:bg-white ${
-                    !props.sidebarOpen && '!w-full delay-300'
+                    !props.sidebarOpen && "!w-full delay-300"
                   }`}
                 ></span>
                 <span
                   className={`relative top-0 left-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-150 duration-200 ease-in-out dark:bg-white ${
-                    !props.sidebarOpen && 'delay-400 !w-full'
+                    !props.sidebarOpen && "delay-400 !w-full"
                   }`}
                 ></span>
                 <span
                   className={`relative top-0 left-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-200 duration-200 ease-in-out dark:bg-white ${
-                    !props.sidebarOpen && '!w-full delay-500'
+                    !props.sidebarOpen && "!w-full delay-500"
                   }`}
                 ></span>
               </span>
-              <span className='absolute right-0 h-full w-full rotate-45'>
+              <span className="absolute right-0 w-full h-full rotate-45">
                 <span
                   className={`absolute left-2.5 top-0 block h-full w-0.5 rounded-sm bg-black delay-300 duration-200 ease-in-out dark:bg-white ${
-                    !props.sidebarOpen && '!h-0 !delay-[0]'
+                    !props.sidebarOpen && "!h-0 !delay-[0]"
                   }`}
                 ></span>
                 <span
                   className={`delay-400 absolute left-0 top-2.5 block h-0.5 w-full rounded-sm bg-black duration-200 ease-in-out dark:bg-white ${
-                    !props.sidebarOpen && '!h-0 !delay-200'
+                    !props.sidebarOpen && "!h-0 !delay-200"
                   }`}
                 ></span>
               </span>
@@ -52,33 +53,32 @@ const Header = (props) => {
           </button>
           {/* <!-- Hamburger Toggle BTN --> */}
 
-          <Link className='block flex-shrink-0 lg:hidden' to='/'>
-            <div className='text-xl text-black ml-2 font-bold dark:text-white'>
+          <Link className="flex-shrink-0 block lg:hidden" to="/">
+            <div className="ml-2 text-xl font-bold text-black dark:text-white">
               GitBoard.
             </div>
           </Link>
         </div>
-        <div className='relative'>
-          <div className='flex items-center gap-4'>
-            <span>
-              <img
-                className='h-12 w-12 rounded-full'
-                src={
-                  userDetail?.avatar_url ||
-                  'https://cdn-icons-png.flaticon.com/512/219/219959.png'
-                }
-                alt='User'
-              />
-            </span>
-            <span className='hidden text-left lg:block'>
-              <span className='block text-sm font-medium text-black dark:text-white'>
-                {userDetail?.name || 'Username'}
+        <div className="relative">
+          {userDetail && (
+            <div className="flex items-center gap-4">
+              <span>
+                <img
+                  className="w-12 h-12 rounded-full"
+                  src={userDetail.avatar_url}
+                  alt="User"
+                />
               </span>
-              <span className='block text-xs font-medium'>
-                {userDetail?.company} {userDetail?.location}
+              <span className="hidden text-left lg:block">
+                <span className="block text-sm font-medium text-black dark:text-white">
+                  {userDetail.name}
+                </span>
+                <span className="block text-xs font-medium ">
+                  {userDetail.company} {userDetail.location}
+                </span>
               </span>
-            </span>
-          </div>
+            </div>
+          )}
         </div>
         {/* <!-- Dark Mode Toggler --> */}
         <DarkModeSwitcher />
