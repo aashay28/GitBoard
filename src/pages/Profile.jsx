@@ -20,7 +20,7 @@ const Profile = () => {
       getUserDetails();
     }
   }, [params.user]);
-  console.log('userData', userBio);
+
   return (
     <DefaultLayout>
       <Breadcrumb pageName='Profile' />
