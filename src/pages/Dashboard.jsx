@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const Dashboard = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
-  const { userDetail, setUserDetail } = useContext(ContextRepository);
+  const { setUserDetail } = useContext(ContextRepository);
   const handleInputChange = (event) => {
     setUsername(event.target.value);
   };
@@ -30,7 +30,6 @@ const Dashboard = () => {
               type='text'
               placeholder='Enter your github username'
               className='bg-transparent w-32 md:w-64 focus:outline-none relative'
-              value={userDetail?.login}
               onChange={handleInputChange}
               required
             />
