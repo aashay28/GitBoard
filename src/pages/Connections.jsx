@@ -6,7 +6,7 @@ import FollowingCard from '../components/FollowingCard';
 
 import ChatCard from '../components/ChatCard';
 
-import TableOne from '../components/TableOne';
+// import TableOne from '../components/TableOne';
 import { useContext, useEffect, useState } from 'react';
 import ContextRepository from '../context/ContextRepository';
 import Breadcrumb from '../components/Breadcrumb';
@@ -39,7 +39,6 @@ const Connections = () => {
       !followingList?.some((following) => following.login === followers.login)
   );
 
- 
   return (
     <DefaultLayout>
       <Breadcrumb pageName='Connections' />
@@ -67,9 +66,9 @@ const Connections = () => {
         <div className='col-span-6 xl:col-span-6'>
           <ChatCard title='Not Following' follow={iAmNotFollowingBack} />
         </div>
-        <div className='col-span-12 xl:col-span-8'>
+        {/* <div className='col-span-12 xl:col-span-8'>
           <TableOne followersList={followersList} />
-        </div>
+        </div> */}
       </div>
     </DefaultLayout>
   );
