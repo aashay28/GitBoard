@@ -1,7 +1,7 @@
 # Welcome to GitHub docs contributing guide
 
 Thank you for investing your time in contributing to our project! 
-Any contribution you make will be reflected on [git-board-gamma.vercel.app](https://git-board-gamma.vercel.app) :sparkles:.
+Any contribution you make will be reflected on [https://gitboardweb.vercel.app/](https://gitboardweb.vercel.app/) :sparkles:.
 
 In this guide you will get an overview of the contribution workflow from opening an issue, creating a PR, reviewing, and merging the PR.
 

@@ -21,7 +21,7 @@ const Dashboard = () => {
   return (
     <DefaultLayout>
       <section className='bg-white dark:bg-gray-800'>
-        <div className='flex items-center relative grow align-middle'>
+        <div className='relative flex items-center align-middle grow'>
           <div className='flex items-center gap-3 p-2.5 xl:p-5'>
             <div className='flex-shrink-0'>
               <img src={Github} alt='Brand' />
@@ -29,7 +29,7 @@ const Dashboard = () => {
             <input
               type='text'
               placeholder='Enter your github username'
-              className='bg-transparent w-32 md:w-64 focus:outline-none relative'
+              className='relative w-32 bg-transparent md:w-64 focus:outline-none'
               onChange={handleInputChange}
               required
             />
@@ -38,12 +38,12 @@ const Dashboard = () => {
             <ul className='flex items-center gap-2 2xsm:gap-4'>
               <button
                 onClick={handleEnterClick}
-                className='group relative inline-block overflow-hidden rounded  bg-gray  px-5 py-3 text-sm font-medium text-primary hover:animate-pulse focus:outline-none focus:ring active:bg-primary active:text-white'
+                className='relative inline-block px-5 py-3 overflow-hidden text-sm font-medium rounded group bg-gray text-primary hover:animate-pulse focus:outline-none focus:ring active:bg-primary active:text-white'
               >
-                <span className='ease absolute left-0 top-0 h-0 w-0 border-t-2 border-primary transition-all duration-200 group-hover:w-full'></span>
-                <span className='ease absolute right-0 top-0 h-0 w-0 border-r-2 border-primary transition-all duration-200 group-hover:h-full'></span>
-                <span className='ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-primary transition-all duration-200 group-hover:w-full'></span>
-                <span className='ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-primary transition-all duration-200 group-hover:h-full'></span>
+                <span className='absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 ease border-primary group-hover:w-full'></span>
+                <span className='absolute top-0 right-0 w-0 h-0 transition-all duration-200 border-r-2 ease border-primary group-hover:h-full'></span>
+                <span className='absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 ease border-primary group-hover:w-full'></span>
+                <span className='absolute bottom-0 left-0 w-0 h-0 transition-all duration-200 border-l-2 ease border-primary group-hover:h-full'></span>
                 Enter
               </button>
             </ul>
