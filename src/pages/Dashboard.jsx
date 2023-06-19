@@ -13,6 +13,11 @@ const Dashboard = () => {
   const handleInputChange = (event) => {
     setUsername(event.target.value);
   };
+  const handleKeyDown = async (event) => {
+    if(event.key === 'Enter'){
+      handleEnterClick()
+    }
+  }
   const handleEnterClick = async () => {
     setUserDetail(await fetchApi(`users/${username}`));
     navigate('/connections');
@@ -31,6 +36,7 @@ const Dashboard = () => {
               placeholder='Enter your github username'
               className='relative w-32 bg-transparent md:w-64 focus:outline-none'
               onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
               required
             />
           </div>
