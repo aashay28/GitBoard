@@ -31,6 +31,25 @@ To create this website we used:
 
 **Take a look at [Contributing Guide](/contributing.md) for further guidance.**
 
+# Local Setup
+
+## Prerequisite
+- [Install node and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
+Follow the below steps to setup the project for local development:
+```
+# Go to your project directory and clone the project
+git clone https://github.com/aashay28/GitBoard.git && cd ./GitBoard
+
+# Install packages
+npm i
+
+# Start the application in dev mode
+npm run dev
+```
+
+Now you can start editing the files and view the changes using [this url](http://localhost:5174/)
+
 # License 📝
 
 Gitboard is licensed under the [MIT License](/LICENSE). See the LICENSE file for more information.
