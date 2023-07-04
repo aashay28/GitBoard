@@ -1,12 +1,12 @@
-# GitBoard
+# GitBoard Web
+
 Gitboard is a website that displays all public repositories hosted on Git, enabling users to search and browse repositories based on keywords, programming languages, and repository size. Users can view commit history, download code, and contribute to projects. Gitboard provides a unified search interface for users and tools for repository analysis.
 
 # Getting Started ⭐
 
-+ To get started with Gitboard, simply visit our [website](https://gitboardweb.vercel.app/).
-+ From there, you can browse through open source projects, filter the projects and visit the user profile.
-+ Check the [Contributing Guide](/contributing.md) for more information.
-
+- To get started with Gitboard, simply visit our [website](https://gitboardweb.vercel.app/).
+- From there, you can browse through open source projects, filter the projects and visit the user profile.
+- Check the [Contributing Guide](/contributing.md) for more information.
 
 ![Screenshot 2023-05-26 at 6 06 19 PM](https://github.com/aashay28/GitBoard/assets/108337259/799bc073-e507-458d-ae7a-19f261a66a06)
 
@@ -22,12 +22,11 @@ To create this website we used:
 
 # Contributing ✨
 
-+ Are you interested in contributing to an open source project, but not sure where to start? You've come to the right place!
-+ We're inviting you to join our community and make your first contribution to this project. 
-+ Whether you're a student, a self-taught programmer, or simply curious about open source, we welcome everyone who is eager to learn and contribute.
-+ You don't need to be an experienced developer to get started. There are many ways you can help us, from fixing typos in the documentation to adding new features to the website.
-+ Contributing to open source is a fantastic way to learn new skills, gain practical experience, and connect with like-minded individuals.
-
+- Are you interested in contributing to an open source project, but not sure where to start? You've come to the right place!
+- We're inviting you to join our community and make your first contribution to this project.
+- Whether you're a student, a self-taught programmer, or simply curious about open source, we welcome everyone who is eager to learn and contribute.
+- You don't need to be an experienced developer to get started. There are many ways you can help us, from fixing typos in the documentation to adding new features to the website.
+- Contributing to open source is a fantastic way to learn new skills, gain practical experience, and connect with like-minded individuals.
 
 **Take a look at [Contributing Guide](/contributing.md) for further guidance.**
 
